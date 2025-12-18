@@ -1,17 +1,3 @@
-<?php
-require_once '../config.php';
-require_once 'conexion.php';
-class Ventas{
-    private $pdo, $con;
-    public function __construct() {
-        $this->con = new Conexion();
-        $this->pdo = $this->con->conectar();
-    }
-
-    public function getProducts()
-    {
-        $consult = $this->pdo->prepare("SELECT * FROM producto WHERE status = 1");
-        $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
