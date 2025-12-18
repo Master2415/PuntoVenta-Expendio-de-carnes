@@ -1,15 +1,21 @@
 {
-    "name": "douglas/sistema-ventas",
-    "description": "Sistema de Ventas MVC",
-    "type": "project",
-    "require": {
-        "vlucas/phpdotenv": "5.5"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Douglas",
-            "email": "douglas@example.com"
-        }
-    ]
+  "name": "douglas/sistema-ventas",
+  "description": "Sistema de Ventas MVC",
+  "type": "project",
+  "require": {
+    "vlucas/phpdotenv": "5.5"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Douglas",
+      "email": "douglas@example.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "controllers/",
+      "App\\Models\\": "models/"
+    }
+  }
 }

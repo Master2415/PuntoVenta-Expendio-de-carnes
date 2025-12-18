@@ -8,11 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="<?php echo $_SESSION['csrf_token']; ?>">
+    <link rel="icon" href="<?php echo RUTA . 'assets/img/carne.png'; ?>">
 
     <title>Pagina Principal</title>
 
     <!-- Custom fonts for this template-->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?php echo RUTA . 'assets/'; ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -36,7 +40,8 @@ if (!empty($_GET['pagina'])) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?php echo ($mini) ? 'toggled' : ''; ?>" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?php echo ($mini) ? 'toggled' : ''; ?>"
+            id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="plantilla.php">
@@ -65,7 +70,8 @@ if (!empty($_GET['pagina'])) {
             </div>
             <?php if (!empty($clientes)) { ?>
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'clientes') ? 'bg-gradient-info' : ''; ?>">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'clientes') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=clientes">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Clientes</span>
@@ -76,7 +82,8 @@ if (!empty($_GET['pagina'])) {
             <?php if (!empty($proveedor)) { ?>
                 <hr class="sidebar-divider d-none d-md-block">
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'proveedor') ? 'bg-gradient-info' : ''; ?>">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'proveedor') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=proveedor">
                         <i class="fas fa-store"></i>
                         <span>Proveedores</span>
@@ -87,7 +94,8 @@ if (!empty($_GET['pagina'])) {
             <?php if (!empty($usuarios)) { ?>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'usuarios') ? 'bg-gradient-info' : ''; ?>">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'usuarios') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=usuarios">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Usuarios</span>
@@ -99,10 +107,19 @@ if (!empty($_GET['pagina'])) {
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'productos') ? 'bg-gradient-info' : ''; ?>">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'productos') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=productos">
                         <i class="fas fa-fw fa-list"></i>
                         <span>Productos</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Mermas -->
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'mermas') ? 'bg-gradient-info' : ''; ?>">
+                    <a class="nav-link" href="?pagina=mermas">
+                        <i class="fas fa-fw fa-trash-alt"></i>
+                        <span>Mermas (Pérdidas)</span>
                     </a>
                 </li>
             <?php } ?>
@@ -110,8 +127,10 @@ if (!empty($_GET['pagina'])) {
             <?php if (!empty($nueva_compra) || !empty($compras)) { ?>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'compras' || !empty($_GET['pagina'])  && $_GET['pagina'] == 'historial_compras') ? 'bg-gradient-info' : ''; ?>">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompra" aria-expanded="true" aria-controls="collapseCompra">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'compras' || !empty($_GET['pagina']) && $_GET['pagina'] == 'historial_compras') ? 'bg-gradient-info' : ''; ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompra"
+                        aria-expanded="true" aria-controls="collapseCompra">
                         <i class="fas fa-cart-plus"></i>
                         <span>Compras</span>
                         <i class="fas fa-chevron-right float-right"></i>
@@ -133,8 +152,10 @@ if (!empty($_GET['pagina'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <?php if (!empty($nueva_venta) || !empty($ventas)) { ?>
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'ventas' || !empty($_GET['pagina'])  && $_GET['pagina'] == 'historial') ? 'bg-gradient-info' : ''; ?>">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta" aria-expanded="true" aria-controls="collapseVenta">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'ventas' || !empty($_GET['pagina']) && $_GET['pagina'] == 'historial') ? 'bg-gradient-info' : ''; ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta"
+                        aria-expanded="true" aria-controls="collapseVenta">
                         <i class="fas fa-cash-register"></i>
                         <span>Ventas</span>
                         <i class="fas fa-chevron-right float-right"></i>
@@ -153,20 +174,31 @@ if (!empty($_GET['pagina'])) {
                 </li>
             <?php } ?>
 
+
+
             <?php if (!empty($configuracion)) { ?>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
-                <li class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'configuracion') ? 'bg-gradient-info' : ''; ?>">
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'configuracion') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=configuracion">
                         <i class="fas fa-user-cog"></i>
                         <span>Configuración</span>
                     </a>
                 </li>
+                <li
+                    class="nav-item <?php echo (!empty($_GET['pagina']) && $_GET['pagina'] == 'balance') ? 'bg-gradient-info' : ''; ?>">
+                    <a class="nav-link" href="?pagina=balance">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Reportes Financieros</span>
+                    </a>
+                </li>
             <?php } ?>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline mt-3">
-                <button class="rounded-circle border-0" id="sidebarToggle"><i class="fas fa-chevron-circle-left text-gray-400"></i></button>
+                <button class="rounded-circle border-0" id="sidebarToggle"><i
+                        class="fas fa-chevron-circle-left text-gray-400"></i></button>
             </div>
 
         </ul>
@@ -195,12 +227,16 @@ if (!empty($_GET['pagina'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre']; ?></span>
-                                <img class="img-profile rounded-circle" src="<?php echo RUTA .  'assets/img/avatar.png'; ?>">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($_SESSION['nombre']); ?></span>
+                                <img class="img-profile rounded-circle"
+                                    src="<?php echo RUTA . 'assets/img/avatar.png'; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile

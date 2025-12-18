@@ -1,9 +1,11 @@
 <?php
-require_once '../config.php';
-require_once 'conexion.php';
-class UsuariosModel{
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/conexion.php';
+class UsuariosModel
+{
     private $pdo, $con;
-    public function __construct() {
+    public function __construct()
+    {
         $this->con = new Conexion();
         $this->pdo = $this->con->conectar();
     }

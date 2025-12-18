@@ -22,7 +22,7 @@ require_once 'views/includes/header.php';
 if (isset($_GET['pagina'])) {
     if (empty($_GET['pagina'])) {
         $plantilla->index();
-    }else{
+    } else {
         try {
             $archivo = $_GET['pagina'];
             if ($archivo == 'usuarios' && !empty($usuarios)) {
@@ -33,11 +33,11 @@ if (isset($_GET['pagina'])) {
                 $plantilla->clientes();
             } else if ($archivo == 'proveedor' && !empty($proveedor)) {
                 $plantilla->proveedor();
-            }else if ($archivo == 'productos' && !empty($productos)) {
+            } else if ($archivo == 'productos' && !empty($productos)) {
                 $plantilla->productos();
             } else if ($archivo == 'ventas' && !empty($nueva_venta)) {
                 $plantilla->ventas();
-            } else if ($archivo == 'historial' && !empty($ventas)) {                
+            } else if ($archivo == 'historial' && !empty($ventas)) {
                 $plantilla->historial();
             } else if ($archivo == 'reporte' && !empty($ventas)) {
                 $plantilla->reporte();
@@ -47,15 +47,19 @@ if (isset($_GET['pagina'])) {
                 $plantilla->historial_compras();
             } else if ($archivo == 'reporte_compra' && !empty($compras)) {
                 $plantilla->reporte_compra();
-            } else{                
+            } else if ($archivo == 'mermas' && !empty($productos)) {
+                $plantilla->mermas();
+            } else if ($archivo == 'balance' && !empty($configuracion)) {
+                $plantilla->balance();
+            } else {
                 $plantilla->notFound();
-            }          
-        } catch (\Throwable $th) {            
+            }
+        } catch (\Throwable $th) {
             $plantilla->notFound();
         }
     }
-}else{
-    $plantilla->index(); 
+} else {
+    $plantilla->index();
 }
 require_once 'views/includes/footer.php';
 ?>

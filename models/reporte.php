@@ -16,7 +16,7 @@ class Reporte
     }
     public function getSale($id_venta)
     {
-        $consult = $this->pdo->prepare("SELECT v.*, c.* FROM ventas v INNER JOIN cliente c ON v.id_cliente = c.idcliente WHERE v.id = ?");
+        $consult = $this->pdo->prepare("SELECT v.*, c.nombre, c.telefono, c.direccion, u.nombre AS vendedor FROM ventas v INNER JOIN cliente c ON v.id_cliente = c.idcliente INNER JOIN usuario u ON v.id_usuario = u.idusuario WHERE v.id = ?");
         $consult->execute([$id_venta]);
         return $consult->fetch(PDO::FETCH_ASSOC);
     }

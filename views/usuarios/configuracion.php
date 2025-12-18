@@ -5,7 +5,7 @@
             <hr>
             <input type="hidden" id="id" name="id" value="1">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="">Nombre <span class="text-danger">*</span></label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -14,16 +14,7 @@
                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="">Correo <span class="text-danger">*</span></label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo">
-                    </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="">Teléfono <span class="text-danger">*</span></label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -32,10 +23,36 @@
                         <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
                     </div>
                 </div>
-                <div class="col-md-6">                    
+                <div class="col-md-3">
+                    <label for="">Correo <span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="">Moneda <span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="moneda" name="moneda" placeholder="Moneda">
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Dirección <span class="text-danger">*</span></label>
-                        <textarea id="direccion" class="form-control" name="direccion" rows="3" placeholder="Dirección"></textarea>
+                        <textarea id="direccion" class="form-control" name="direccion" rows="3"
+                            placeholder="Dirección"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Mensaje <span class="text-danger">*</span></label>
+                        <textarea id="mensaje" class="form-control" name="mensaje" rows="3"
+                            placeholder="Mensaje"></textarea>
                     </div>
                 </div>
             </div>

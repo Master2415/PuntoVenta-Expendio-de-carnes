@@ -1,3 +1,18 @@
+<?php
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/conexion.php';
+class Ventas
+{
+    private $pdo;
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    public function getProducts()
+    {
+        $consult = $this->pdo->prepare("SELECT * FROM producto WHERE status = 1");
+        $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -104,5 +119,4 @@
         return $consult->execute([$stock, $id_producto]);
     }
 }
-
 ?>

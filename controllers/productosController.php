@@ -1,28 +1,24 @@
 <?php
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
-require_once '../models/productos.php';
+require_once __DIR__ . '/../models/productos.php';
 $productos = new Productos();
 switch ($option) {
     case 'listar':
         $data = $productos->getProducts();
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['accion'] = '<div class="d-flex">
-            <a class="btn btn-danger btn-sm" onclick="deleteProducto(' . $data[$i]['codproducto'] . ')"><i class="fas fa-eraser"></i></a>
-            <a class="btn btn-primary btn-sm" onclick="editProducto(' . $data[$i]['codproducto'] . ')"><i class="fas fa-edit"></i></a>
-            </div>';
-        }
         echo json_encode($data);
         break;
     case 'save':
+        require 'check_csrf.php';
         $barcode = $_POST['barcode'];
         $nombre = $_POST['nombre'];
         $precio = $_POST['precio'];
         $stock = $_POST['stock'];
+        $stock_minimo = $_POST['stock_minimo'];
         $id_product = $_POST['id_product'];
         if ($id_product == '') {
             $consult = $productos->comprobarBarcode($barcode);
             if (empty($consult)) {
-                $result = $productos->saveProduct($barcode, $nombre, $precio, $stock);
+                $result = $productos->saveProduct($barcode, $nombre, $precio, $stock, $stock_minimo);
                 if ($result) {
                     $res = array('tipo' => 'success', 'mensaje' => 'PRODUCTO REGISTRADO');
                 } else {
@@ -32,7 +28,7 @@ switch ($option) {
                 $res = array('tipo' => 'error', 'mensaje' => 'EL BARCODE YA EXISTE');
             }
         } else {
-            $result = $productos->updateProduct($barcode, $nombre, $precio, $stock, $id_product);
+            $result = $productos->updateProduct($barcode, $nombre, $precio, $stock, $stock_minimo, $id_product);
             if ($result) {
                 $res = array('tipo' => 'success', 'mensaje' => 'PRODUCTO MODIFICADO');
             } else {
@@ -42,6 +38,7 @@ switch ($option) {
         echo json_encode($res);
         break;
     case 'delete':
+        require 'check_csrf.php';
         $id = $_GET['id'];
         $data = $productos->deleteProducto($id);
         if ($data) {

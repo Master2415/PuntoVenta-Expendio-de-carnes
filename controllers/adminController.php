@@ -1,5 +1,5 @@
 <?php
-require_once '../models/admin.php';
+require_once __DIR__ . '/../models/admin.php';
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
 $admin = new AdminModel();
 $id_user = $_SESSION['idusuario'];
@@ -9,11 +9,17 @@ switch ($option) {
         $data['cliente'] = $admin->getDatos('cliente');
         $data['producto'] = $admin->getDatos('producto');
         $data['venta'] = $admin->getVentas($id_user);
+        $data['stock_bajo'] = $admin->getProductosMinimo();
         echo json_encode($data);
         break;
 
     case 'topClientes':
         $data = $admin->topClientes($id_user);
+        echo json_encode($data);
+        break;
+
+    case 'topStockBajo':
+        $data = $admin->getProductosStockBajo();
         echo json_encode($data);
         break;
 
@@ -32,11 +38,13 @@ switch ($option) {
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
         $correo = $_POST['correo'];
+        $moneda = $_POST['moneda'];
+        $mensaje = $_POST['mensaje'];
         $id = $_POST['id'];
-        if (empty($id) || empty($nombre) || empty($telefono) || empty($direccion) || empty($correo)) {
+        if (empty($id) || empty($nombre) || empty($telefono) || empty($direccion) || empty($correo) || empty($moneda) || empty($mensaje)) {
             $res = array('tipo' => 'error', 'mensaje' => 'TODO LOS CAMPOS SON REQUERIDOS');
         } else {
-            $result = $admin->saveDatos($nombre, $telefono, $correo, $direccion, $id);
+            $result = $admin->saveDatos($nombre, $telefono, $correo, $direccion, $moneda, $mensaje, $id);
             if ($result) {
                 $res = array('tipo' => 'success', 'mensaje' => 'REGISTRO MODIFICADO');
             } else {

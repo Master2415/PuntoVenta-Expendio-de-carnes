@@ -36,7 +36,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-barcode"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="stock" name="stock" placeholder="0">
+                        <input type="number" step="0.001" class="form-control" id="stock" name="stock"
+                            placeholder="0.000">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="">Stock Mín. <span class="text-danger">*</span></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-exclamation-triangle"></i></span>
+                        </div>
+                        <input type="number" step="0.001" class="form-control" id="stock_minimo" name="stock_minimo"
+                            placeholder="0.000">
                     </div>
                 </div>
             </div>
@@ -58,6 +69,7 @@
                         <th scope="col">Producto</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Mínimo</th>
                         <th></th>
                     </tr>
                 </thead>

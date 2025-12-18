@@ -1,9 +1,11 @@
 <?php
-require_once '../config.php';
-require_once 'conexion.php';
-class Productos{
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/conexion.php';
+class Productos
+{
     private $pdo, $con;
-    public function __construct() {
+    public function __construct()
+    {
         $this->con = new Conexion();
         $this->pdo = $this->con->conectar();
     }
@@ -28,10 +30,10 @@ class Productos{
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function saveProduct($barcode, $nombre, $precio, $stock)
+    public function saveProduct($barcode, $nombre, $precio, $stock, $stock_minimo)
     {
-        $consult = $this->pdo->prepare("INSERT INTO producto (codigo, descripcion, precio, existencia) VALUES (?,?,?,?)");
-        return $consult->execute([$barcode, $nombre, $precio, $stock]);
+        $consult = $this->pdo->prepare("INSERT INTO producto (codigo, descripcion, precio, existencia, stock_minimo) VALUES (?,?,?,?,?)");
+        return $consult->execute([$barcode, $nombre, $precio, $stock, $stock_minimo]);
     }
 
     public function deleteProducto($id)
@@ -40,10 +42,10 @@ class Productos{
         return $consult->execute([0, $id]);
     }
 
-    public function updateProduct($barcode, $nombre, $precio, $stock, $id)
+    public function updateProduct($barcode, $nombre, $precio, $stock, $stock_minimo, $id)
     {
-        $consult = $this->pdo->prepare("UPDATE producto SET codigo=?, descripcion=?, precio=?, existencia=? WHERE codproducto=?");
-        return $consult->execute([$barcode, $nombre, $precio, $stock, $id]);
+        $consult = $this->pdo->prepare("UPDATE producto SET codigo=?, descripcion=?, precio=?, existencia=?, stock_minimo=? WHERE codproducto=?");
+        return $consult->execute([$barcode, $nombre, $precio, $stock, $stock_minimo, $id]);
     }
 }
 

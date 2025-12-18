@@ -1,5 +1,6 @@
 <?php
-class Plantilla{
+class Plantilla
+{
     //pagina principal
     public function index()
     {
@@ -65,6 +66,16 @@ class Plantilla{
     public function historial_compras()
     {
         include_once 'views/compras/historial.php';
+    }
+
+    public function mermas()
+    {
+        include_once 'views/mermas/index.php';
+    }
+
+    public function balance()
+    {
+        include_once 'views/reportes/balance.php';
     }
 
 }

@@ -1,9 +1,11 @@
 <?php
-require_once '../config.php';
-require_once 'conexion.php';
-class AdminModel{
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/conexion.php';
+class AdminModel
+{
     private $pdo, $con;
-    public function __construct() {
+    public function __construct()
+    {
         $this->con = new Conexion();
         $this->pdo = $this->con->conectar();
     }
@@ -43,10 +45,23 @@ class AdminModel{
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function saveDatos($nombre, $telefono, $correo, $direccion, $id)
+    public function saveDatos($nombre, $telefono, $correo, $direccion, $moneda, $mensaje, $id)
     {
-        $consult = $this->pdo->prepare("UPDATE configuracion SET nombre=?, telefono=?, email=?, direccion=? WHERE id = ?");
-        return $consult->execute([$nombre, $telefono, $correo, $direccion, $id]);
+        $consult = $this->pdo->prepare("UPDATE configuracion SET nombre=?, telefono=?, email=?, direccion=?, moneda=?, mensaje=? WHERE id = ?");
+        return $consult->execute([$nombre, $telefono, $correo, $direccion, $moneda, $mensaje, $id]);
+    }
+    public function getProductosMinimo()
+    {
+        $consult = $this->pdo->prepare("SELECT COUNT(*) AS total FROM producto WHERE existencia <= stock_minimo AND status = 1");
+        $consult->execute();
+        return $consult->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getProductosStockBajo()
+    {
+        $consult = $this->pdo->prepare("SELECT descripcion, existencia, stock_minimo FROM producto WHERE existencia <= stock_minimo AND status = 1 ORDER BY existencia ASC LIMIT 10");
+        $consult->execute();
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

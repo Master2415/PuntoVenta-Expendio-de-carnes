@@ -1,7 +1,7 @@
 <?php
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
-require_once '../models/ventas.php';
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/ventas.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 $conexion = new Conexion();
 $pdo = $conexion->conectar();
@@ -83,7 +83,7 @@ switch ($option) {
         $array = json_decode($accion, true);
         $id_cliente = $array['idCliente'];
         $metodo = $array['metodo'];
-        $fecha = date('Y-m-d');
+        $fecha = date('Y-m-d H:i:s');
         $consult = $ventas->getProductsUsers($id_user);
         if (empty($consult)) {
             $res = array('tipo' => 'error', 'mensaje' => 'CARRITO VACIO');

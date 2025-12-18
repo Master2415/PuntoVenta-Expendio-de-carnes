@@ -2,6 +2,7 @@ const frm = document.querySelector('#frmProductos');
 const barcode = document.querySelector('#barcode');
 const nombre = document.querySelector('#nombre');
 const precio = document.querySelector('#precio');
+const stock_minimo = document.querySelector('#stock_minimo');
 const stock = document.querySelector('#stock');
 const id_product = document.querySelector('#id_product');
 const btn_nuevo = document.querySelector('#btn-nuevo');
@@ -18,7 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
       { data: 'descripcion' },
       { data: 'precio' },
       { data: 'existencia' },
-      { data: 'accion' }
+      { data: 'stock_minimo', defaultContent: '0.000' },
+      {
+        data: null,
+        defaultContent: '',
+        render: function (data, type, row) {
+          return `<div class="d-flex">
+            <a class="btn btn-danger btn-sm" onclick="deleteProducto(${row.codproducto})"><i class="fas fa-eraser"></i></a>
+            <a class="btn btn-primary btn-sm" onclick="editProducto(${row.codproducto})"><i class="fas fa-edit"></i></a>
+            </div>`;
+        }
+      }
     ],
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json'
@@ -28,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   frm.onsubmit = function (e) {
     e.preventDefault();
     if (barcode.value == '' || nombre.value == ''
-      || precio.value == '' || stock.value == '') {
+      || precio.value == '' || stock.value == '' || stock_minimo.value == '') {
       message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
     } else {
       const frmData = new FormData(frm);
@@ -88,6 +99,7 @@ function editProducto(id) {
       nombre.value = info.descripcion;
       precio.value = info.precio;
       stock.value = info.existencia;
+      stock_minimo.value = info.stock_minimo;
       id_product.value = info.codproducto;
       btn_save.innerHTML = 'Actualizar';
     })

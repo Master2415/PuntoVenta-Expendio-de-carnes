@@ -12,6 +12,10 @@ function totales() {
             document.querySelector('#totalClientes').textContent = info.cliente.total;
             document.querySelector('#totalProductos').textContent = info.producto.total;
             document.querySelector('#totalVentas').textContent = info.venta.total;
+            document.querySelector('#stockBajo').textContent = info.stock_bajo.total;
+            if (info.stock_bajo.total > 0) {
+                message('error', 'HAY PRODUCTOS CON STOCK BAJO');
+            }
         })
         .catch(function (error) {
             console.log(error);
@@ -95,6 +99,26 @@ function clientes() {
                     }
                 }
             });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    topStockBajo()
+}
+function topStockBajo() {
+    const tableBody = document.querySelector('#table_stock_bajo tbody');
+    axios.get(ruta + 'controllers/adminController.php?option=topStockBajo')
+        .then(function (response) {
+            const info = response.data;
+            let html = '';
+            info.forEach(prod => {
+                html += `<tr>
+                            <td>${prod.descripcion}</td>
+                            <td><span class="badge badge-warning text-white">${prod.existencia}</span></td>
+                            <td><span class="badge badge-danger">${prod.stock_minimo}</span></td>
+                        </tr>`;
+            });
+            tableBody.innerHTML = html;
         })
         .catch(function (error) {
             console.log(error);

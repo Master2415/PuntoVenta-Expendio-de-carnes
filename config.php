@@ -7,7 +7,14 @@ $dotenv->safeLoad();
 session_start();
 
 // Ruta base
-define('RUTA', $_ENV['APP_URL'] ?? 'http://localhost/WS_PHP/WS/Inventario_Expendio/sistema-de-venta-php-axios-y-mysql-mvc/');
+// Ruta base
+$folder = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', __DIR__) . '/');
+$ruta = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $folder;
+define('RUTA', $ruta);
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 // Base de datos
 define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');

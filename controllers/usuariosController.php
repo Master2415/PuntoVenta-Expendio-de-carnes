@@ -1,9 +1,12 @@
 <?php
 require_once '../models/usuarios.php';
+require_once '../models/validator.php';
+use App\Models\Validator;
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
 $usuarios = new UsuariosModel();
 switch ($option) {
     case 'acceso':
+        require 'check_csrf.php';
         $accion = file_get_contents('php://input');
         $array = json_decode($accion, true);
         $email = $array['email'];
@@ -35,10 +38,11 @@ switch ($option) {
         echo json_encode($data);
         break;
     case 'save':
-        $nombre = $_POST['nombre'];
-        $correo = $_POST['correo'];
-        $clave = $_POST['clave'];
-        $id_user = $_POST['id_user'];
+        require 'check_csrf.php';
+        $nombre = Validator::cleanString($_POST['nombre']);
+        $correo = Validator::cleanString($_POST['correo']);
+        $clave = Validator::cleanString($_POST['clave']);
+        $id_user = Validator::cleanString($_POST['id_user']);
         if ($id_user == '') {
             $consult = $usuarios->comprobarCorreo($correo);
             if (empty($consult)) {
@@ -102,7 +106,7 @@ switch ($option) {
             } else {
                 $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL AGREGAR LOS PERMISOS');
             }
-            
+
         }
         echo json_encode($res);
         break;

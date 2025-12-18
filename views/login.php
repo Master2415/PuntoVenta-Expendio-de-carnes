@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="<?php echo $_SESSION['csrf_token']; ?>">
 
     <title>Acceso al sistema</title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?php echo RUTA . 'assets/'; ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo RUTA . 'assets/'; ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -47,14 +49,13 @@
                                     <form class="user" autocomplete="off" id="frmLogin">
                                         <div class="form-group">
                                             <label for="email">E-mail <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control form-control-user"
-                                                id="email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="email"
+                                                aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password <span class="text-danger">*</span></label>
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="password"
+                                                placeholder="Password">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
@@ -86,6 +87,8 @@
     <script src="<?php echo RUTA . 'assets/'; ?>js/axios.min.js"></script>
     <script>
         const ruta = '<?php echo RUTA; ?>';
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
     </script>
     <script src="<?php echo RUTA . 'assets/'; ?>js/login.js"></script>
 </body>

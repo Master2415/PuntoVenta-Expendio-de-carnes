@@ -1,79 +1,164 @@
-/* Cambiar color del sidebar a una temática de carnicería */
+/* =========================================
+   Meat Masters Premium UI Theme
+   ========================================= */
+
+:root {
+  --primary-red: #8b0000;
+  --primary-red-light: #a52a2a;
+  --primary-dark: #660000;
+  --accent-gray: #2c3e50;
+  --bg-light: #f8f9fc;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  background-color: var(--bg-light);
+  font-family: "Nunito", sans-serif;
+}
+
+/* --- Sidebar Refinado --- */
 .bg-gradient-primary {
-    background-color: #d22a2a; /* Un tono marrón que recuerda a la carne fresca */
-    background-image: linear-gradient(180deg, #bb2424 10%, #c10202 100%);
-    background-size: cover;
-    border-right: 1px solid #fff; /* Añade un borde blanco para separación */
+  background-color: var(--primary-red);
+  background-image: linear-gradient(
+    180deg,
+    var(--primary-red) 10%,
+    var(--primary-dark) 100%
+  );
+  background-size: cover;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  border-right: none;
 }
 
-/* Cambiar color del item activo en el sidebar */
-.nav-item.bg-gradient-info {
-    background-color: #8b0000; /* Un tono rojo oscuro */
-    background-image: linear-gradient(180deg, #8b0000 10%, #641414 100%);
-}
-
-/* Estilos para iconos y texto del sidebar */
 .sidebar .nav-item .nav-link {
-    color: #ffffff; /* Color blanco para el texto */
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .sidebar .nav-item .nav-link:hover {
-    color: #ff6347; /* Tomate rojo al pasar el mouse */
+  color: #fff;
+  transform: translateX(5px);
 }
 
-.sidebar .sidebar-brand {
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 1px 1px 2px #000000; /* Sombra ligera para destacar el texto */
+.sidebar .nav-item .nav-link i {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.sidebar-divider {
-    border-top: 1px solid #ffffff;
+.sidebar .nav-item.active .nav-link,
+.nav-item.bg-gradient-info {
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15) !important;
+  background-image: none !important;
+  border-left: 4px solid #fff;
 }
 
-
-/* Fondo del formulario de login */
-.bg-gradient-primary {
-    background-color: #d22a2a; /* Tono de carne fresca */
-    background-image: linear-gradient(180deg, #bb2424 10%, #c10202 100%);
-    background-size: cover;
-    border-right: 1px solid #fff; /* Borde blanco */
-}
-
-/* Estilos para el formulario de login */
+/* --- Cards Modernas --- */
 .card {
-    border: none; /* Elimina el borde de la tarjeta */
-    border-radius: 0.5rem; /* Redondea las esquinas de la tarjeta */
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  margin-bottom: 1.5rem;
 }
 
-.card-body {
-    padding: 2rem; /* Ajusta el espaciado interno de la tarjeta */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-hover-shadow);
 }
 
-.form-control {
-    border-radius: 0.25rem; /* Redondea las esquinas del campo de entrada */
-    border-color: #d1d3e2; /* Color del borde del campo de entrada */
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-radius: 12px 12px 0 0 !important;
 }
 
-.form-control:focus {
-    border-color: #c10202; /* Color del borde al enfocarse */
-    box-shadow: 0 0 0 0.2rem rgba(193, 2, 2, 0.25); /* Sombra de enfoque */
+/* --- Dashboard Stats --- */
+.border-left-primary,
+.border-left-success,
+.border-left-info,
+.border-left-warning,
+.border-left-danger {
+  border-left-width: 0.4rem !important;
+}
+
+/* --- Tablas Elegantes --- */
+.table {
+  margin-bottom: 0;
+  color: #4a5568;
+}
+
+.table thead th {
+  background-color: var(--primary-red-light);
+  color: #fff;
+  border-top: none;
+  border-bottom: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(139, 0, 0, 0.05);
+}
+
+/* --- Botones Premium --- */
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
 }
 
 .btn-primary {
-    background-color: #c10202; /* Color de fondo del botón */
-    border-color: #d22a2a; /* Color del borde del botón */
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
 }
 
 .btn-primary:hover {
-    background-color: #bb2424; /* Color de fondo del botón al pasar el ratón */
-    border-color: #a31c1c; /* Color del borde al pasar el ratón */
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-.text-gray-900 {
-    color: #ffffff; /* Color del texto en el encabezado del login */
+/* --- Inputs --- */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 0.6rem 1rem;
+  background-color: #fcfcfc;
 }
 
-.text-gray-900.mb-4 {
-    text-shadow: 1px 1px 2px #000000; /* Sombra del texto */
+.form-control:focus {
+  background-color: #fff;
+  border-color: var(--primary-red-light);
+  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+/* --- Badges --- */
+.badge {
+  padding: 0.5em 0.8em;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* --- Footer --- */
+footer.sticky-footer {
+  background-color: #fff;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
 }

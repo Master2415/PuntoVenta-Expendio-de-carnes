@@ -3,6 +3,8 @@ const telefono = document.querySelector('#telefono');
 const nombre = document.querySelector('#nombre');
 const direccion = document.querySelector('#direccion');
 const correo = document.querySelector('#correo');
+const moneda = document.querySelector('#moneda');
+const mensaje = document.querySelector('#mensaje');
 const id = document.querySelector('#id');
 const btn_save = document.querySelector('#btn-save');
 document.addEventListener('DOMContentLoaded', function () {
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     frm.onsubmit = function (e) {
         e.preventDefault();
         if (telefono.value == '' || nombre.value == ''
-            || direccion.value == '' || correo.value == '') {
+            || direccion.value == '' || correo.value == '' || moneda.value == '' || mensaje.value == '') {
             message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
         } else {
             const frmData = new FormData(frm);
@@ -37,6 +39,8 @@ function cargarDatos() {
             nombre.value = info.nombre;
             direccion.value = info.direccion;
             correo.value = info.email;
+            moneda.value = info.moneda;
+            mensaje.value = info.mensaje;
             id.value = info.id;
         })
         .catch(function (error) {

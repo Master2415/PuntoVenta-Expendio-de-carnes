@@ -113,9 +113,9 @@ function temp() {
       info.forEach(pro => {
         tempProductos += `<tr>
                     <td>${pro.descripcion}</td>
-                    <td><input class="form-control" type="number" value="${pro.precio}" onchange="addPrecio(event, ${pro.id})" /></td>
-                    <td><input class="form-control" type="number" value="${pro.cantidad}" onchange="addCantidad(event, ${pro.id})" /></td>
-                    <td>${parseFloat(pro.precio) * parseInt(pro.cantidad)}</td>
+                    <td><input class="form-control" type="number" step="0.01" value="${pro.precio}" onchange="addPrecio(event, ${pro.id})" /></td>
+                    <td><input class="form-control" type="number" step="0.001" value="${pro.cantidad}" onchange="addCantidad(event, ${pro.id})" /></td>
+                    <td>${(parseFloat(pro.precio) * parseFloat(pro.cantidad)).toFixed(2)}</td>
                     <td><i class="fas fa-eraser text-danger" onclick="deleteproducto(${pro.id})"></i></td>
                 </tr>`;
       });
